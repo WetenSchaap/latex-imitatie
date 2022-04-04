@@ -1,0 +1,52 @@
+% This is the mandatory, pedel-approved title page.
+% Text CANNOT be changed!
+% Thanks to https://github.com/mathren/API_thesis_template/blob/master/content/titlepage.tex for a simple LATEX template for these pages
+
+%---------------------------------------------------------------------------
+%	COVER PAGE
+%---------------------------------------------------------------------------
+
+% \thispagestyle{empty} % No page numbering here!
+
+\begin{minipage}[c][190mm][c]{118mm} %% Full center
+  % \begin{minipage}[c][190mm][c]{124mm}  %% 6mm offset from center to right
+    % For the print edition I choose to offset the page to compensate for the
+    % binding back. This gives the illusion that the title page is centered.
+    % For the digital edition I use the true center. 
+  \makeatletter
+  \begin{center}
+      %% Leading whitespace
+      \vspace*{1.2cm}
+  
+      %% Thesis title
+      { \huge Colloidal Architectures }\\
+      \vspace*{0.2cm}
+      { \Large Atom-like Assembly of Patchy Particles }\\ % textsc can be used to makes captioned font for subtitle, but I think its not so nice here.
+      [2.7cm]
+  
+      %% Thesis type
+      \textsc{\Large ACADEMISCH PROEFSCHRIFT}\\[1.2cm]
+          
+      %% Auxiliary details
+      \linespread{1.2}
+      { \normalsize \textrm{
+          ter verkrijging van de graad van doctor \\
+          aan de Universiteit van Amsterdam \\
+          op gezag van de Rector Magnificus \\
+          prof.~dr.~K.~I.~J.~Maex \\
+          en overstaan van een door het College voor Promoties ingestelde \\
+          commissie, in het openbaar te verdedigen in de Agnietenkapel \\
+          op vrijdag 8 juli 2022, te 10.00 uur \\ 
+          \vspace{0.9cm}
+          door \\[0.3cm]
+          \vspace{0.9cm}
+          Petrus Johannes Maria Swinkels\\[0.3cm]
+          geboren te Tilburg \\[0.3cm]  
+      } }
+  
+  \end{center}
+  \makeatother
+
+\end{minipage}
+%% Clear out the remaining page
+\clearpage

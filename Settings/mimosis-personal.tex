@@ -1,0 +1,144 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Fonts
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifxetexorluatex
+  \setmainfont{Minion Pro}
+\else
+  \usepackage[lf]{ebgaramond}
+  \usepackage[oldstyle,scale=0.7]{sourcecodepro}
+  \singlespacing
+\fi
+
+\renewcommand{\th}{\textsuperscript{\textup{th}}\xspace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Change page size
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This is a horrible subject full of jargon, and completely ununderstandable by non-printing experts like myself, but like this it looks nice! Check koma-script docs on CTAN, Chapter 2 for an explenation.
+% Basically, these options try to limit the number of charachters on a single line, because if there are ~80+ charachters, it becomes tiring to read. To set the correct margins etc, KOMA needs to know the font size, paper size, etc., so that is why I need to re-run it here.
+\KOMAoptions
+  {
+    paper=170mm:240mm,  % 17x24 cm is Dutch Thesis standard size.
+    DIV=calc,           % automatically work out how wide text should be, etc..
+    twoside=false,      % a digital copy is of course not two-sided! So set this to 'false' for the digital reading version for the comittee, and turn it to 'true' for the printing copy you need to send to the press.
+    BCOR = 0mm,         % This is the so-called binding correction, the amount of paper that 'disapears' into the spine of the booklet. It basically offsets your text from the center to account for this. Only needed in PRINTING version of the thesis! The value depends on the printing process.
+  }
+\recalctypearea % to apply the options
+
+% If twoside = true, This has the (seemingly) weird effect of getting much larger empty margin space on the outer edges then the inner edges of the paper, but this actually makes sense! Since this will be a booklet, the two inner margins together will actually be the same size as the individual outer margins. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Draft settings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Turn these off for the final version!
+\KOMAoptions{overfullrule=true}    % Line next to overly long lines (if present)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Caption settings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\KOMAoptions
+  {
+    captions=nooneline,            % makes 1 line captions behave the same as multiline captions. (I think it is) Very ugly if you don't do this.
+  }
+\setcapindent{0.5em}               % Change size of indenting in second line of captions
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Make the distance between float and text smaller
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% makes distance between Figures and text smaller. Wastes less space on your pages with whitespace
+\setlength{\textfloatsep}{5pt plus 2pt minus 2pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Float placements
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Max number of figures/tables on one page is 1, also, they can take at most `\XXXfraction' of the page, before they are forced onto a page just for the figure.
+\renewcommand{\topfraction}{1}
+\renewcommand{\bottomfraction}{1}
+\renewcommand{\textfraction}{0}
+\setcounter{totalnumber}{1}
+\setcounter{bottomnumber}{1}
+\setcounter{topnumber}{1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Titlepage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% In printing books, it is normal to include a cover page before the 'real' titlepage, so we do that as well. Settings about that go here.
+
+\renewcommand*{\titlepagestyle}{empty} % No page numbers on this page!
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Settings for the abstract at the beginning of a chapter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\abstractwidth{0.85} % width of abstract as fraction of pagewidth
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Epigraph settings (quote boxes)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\epigraphflush}{center} % center epigraphs.
+\setlength{\epigraphwidth}{6.5cm} % set width of epigraph.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Show Bibliography in Content section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Removing this will remove bib from the toc completely. It does not actually number the bibliography section, which I think is weird.
+\KOMAoptions{bibliography=numbered}
+\KOMAoptions{toc=bibliographynumbered}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Settings for colouring the number in chapters, (sub-)sections, and 
+% captions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% In this template, every chapter has its own theme color, set that up here
+% If you just want 1 consistent color, just repeat the same color a lot of times.
+
+% definition of colours (outside of regular definitions)
+% check also here: https://latexcolor.com/
+% for instance:
+\definecolor{deep-azure}            {RGB}{  10,  50,  94}
+\definecolor{bluegray}              {rgb}{0.4, 0.6, 0.8}
+\definecolor{palecarmine}           {rgb}{0.69, 0.25, 0.21}
+\definecolor{persianplum}           {rgb}{0.44, 0.11, 0.11}
+\definecolor{brightmaroon}          {rgb}{0.76, 0.13, 0.28}
+\definecolor{darktangerine}         {rgb}{1.0, 0.66, 0.07}
+\definecolor{britishracinggreen}    {rgb}{0.0, 0.26, 0.15}
+\definecolor{tpyellow}              {HTML}{DDAA33}
+\definecolor{tpred}                 {HTML}{BB5566}
+\definecolor{tpdblue}               {HTML}{004488} 
+\definecolor{tpgreen}               {HTML}{38993E}
+
+% define the colours to cycle trough (see https://tex.stackexchange.com/questions/99429/chapter-colorized-in-different-colors)
+% there is no "chapter 0", so ther is a dummy at index=0.
+% This array needs to be a bit longer than the actual number of chapters. So fill it out with dummies.
+
+\def\colourarray{{"deep-azure", "deep-azure", "bluegray", "palecarmine", "persianplum", "brightmaroon", "darktangerine", "britishracinggreen", "tpyellow", "tpred", "tpdblue", "tpgreen"}} 
+
+
+% Now actually set the colours below:
+% Colour for chapter numbers
+\renewcommand*{\chapterformat}{%
+  \fontsize{50}{55}\selectfont\pgfmathparse{\colourarray[\thechapter]}\textcolor{\pgfmathresult}{\thechapter}\autodot\enskip
+}
+% how is this built up?
+% \fontsize speaks for itself, \selectfont too. 
+% \pgfmathparse{\colourarray[\thechapter]} takes the index in the array with the chapter number and looks what the colour is
+% \textcolor{\pgfmathresult} takes the result and actually colours the chapter number
+% The other (sub-)sections etc. below are built in the same way, based on the chapter number so sections have the same color as chapters.
+
+% Colour for section numbers
+\renewcommand*{\sectionformat}{%
+\pgfmathparse{\colourarray[\thechapter]}\textcolor{\pgfmathresult}{\thesection}\autodot\enskip%
+}
+
+% Colour for subsection numbers
+\renewcommand*{\subsectionformat}{%
+\pgfmathparse{\colourarray[\thechapter]}\textcolor{\pgfmathresult}{\thesubsection}\autodot\enskip%
+}
+
+% Colour for subsubsection numbers
+\renewcommand*{\subsubsectionformat}{%
+\pgfmathparse{\colourarray[\thechapter]}\textcolor{\pgfmathresult}{\thesubsubsection}\autodot\enskip%
+}
+
+% Colour for Figure/table numbers:
+\setkomafont{captionlabel}{ \pgfmathparse{\colourarray[\thechapter]} \color{ \pgfmathresult } \small}

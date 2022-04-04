@@ -1,0 +1,46 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cleardoubleevenemptypage
+\chapter{Another scientific chapter}
+\label{ch:anothe-name}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pgfmathsetmacro\chapclr{\colourarray[4]}
+\hypersetup{
+  citecolor  = \chapclr,
+  linkcolor  = \chapclr,
+  urlcolor   = \chapclr,
+}
+
+\epigraph{
+  But I am very poorly today and very stupid and hate everybody and everything
+}{
+  \textit{Charles Darwin}
+}
+
+\begin{center}
+  \begin{minipage}{\abstractwidth\textwidth}
+    \begin{small}
+      \lipsum[1]
+    \end{small}
+  \end{minipage}
+  \vspace{0.5cm}
+\end{center}
+
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+Remember the math in the previous chapter? It was eq. \ref{eq:ch3-switchfunction}!
+
+\blindtext[1]
+
+\section{Methods}
+\blindtext[1]
+\blindenumerate
+\blindtext[1]
+
+\section{Results and Discussion}
+\blindtext[3]
+
+
+\section{Conclusion}
+\lipsum[2]

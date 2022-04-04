@@ -1,0 +1,40 @@
+% Import packages
+\usepackage{etoolbox}          % No clue what this does to be honest.
+
+\usepackage[utf8]{inputenc}    % accept both α and \alpha
+
+\usepackage{graphicx, color}   % For making mice coloured text.
+
+\usepackage{scrhack}           % supress warning. No idea why this works.
+
+\usepackage{textcomp,gensymb}  % Extra symbols, like \celsius.
+
+\usepackage{lipsum}            % For making dummy text
+\usepackage{blindtext}         % idem dito
+
+\usepackage[stretch=15]{microtype} % prevents many bad hboxes by allowing stretch of letters by 1.5%
+\usepackage{mathtools}         % Tools for maths
+
+\usepackage{siunitx}           % To write nice SI units
+
+\usepackage{listings}          % for showing code nicely
+
+\usepackage[%
+  colorlinks = true,
+  unicode,
+]{hyperref}                    % set internal link colors. Will be set to chapter colors in the mainmatter. The values here are just the fallback and I could just have left them out.
+
+\usepackage{url}               % needed to properly show some links in the bibliography.
+
+\usepackage[perpage,symbol*]{footmisc} % For making footnotes nice (and different from regular references to literature)
+
+\usepackage{epigraph}          % for showing quotes at new chapters
+
+\usepackage{tabularx}          % Package for fancy tables
+
+\usepackage{adjustbox}         % package for making tables fit on 1 page
+
+% These two packages are for cycling trough colours depending on the chapter.
+% (optional)
+\usepackage{pgffor}
+\usepackage{pgfmath}

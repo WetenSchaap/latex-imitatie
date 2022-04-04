@@ -1,0 +1,56 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cleardoubleevenemptypage
+\chapter{I should have made fewer example chapters}
+\label{ch:name}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pgfmathsetmacro\chapclr{\colourarray[5]}
+\hypersetup{
+  citecolor  = \chapclr,
+  linkcolor  = \chapclr,
+  urlcolor   = \chapclr,
+}
+
+\epigraph{
+  Memento mori!
+}{
+  
+}
+
+\begin{center}
+  \begin{minipage}{\abstractwidth\textwidth}
+    \begin{small}
+      \lipsum[1]
+      \end{small}
+  \end{minipage}
+  \vspace{0.5cm}
+\end{center}
+
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+
+\blindtext[2]
+
+\section{Methods}
+\blindtext[1]
+\blindmathtrue
+\blindtext[1]
+
+\section{Results and Discussion}
+\blindtext[3]
+
+
+\section{Conclusion}
+\lipsum[1-2]
+
+\clearpage
+\section{Appendix}
+
+\subsection{Appendix 1}
+
+\blindtext[1]
+
+\subsection{Appendix 2}
+
+\blindtext[1]

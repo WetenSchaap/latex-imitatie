@@ -1,0 +1,108 @@
+\documentclass{mimosis}
+
+% get commands and stuff
+\input{Settings/packages}         % Imports all packages you need Mimosis does not contain.
+\input{Settings/bibliography.tex} % Imports bibliography settings
+\input{Settings/mimosis-personal} % For using mimosis with my own settings
+\input{Settings/personalcommands} % User defined commands
+
+% I prefer to put images in a folder for the chapter itsself. You can also put all images in a single dedicated folder, in that case, you can set that here:
+% \graphicspath{{./images/}}
+
+% Set up your cover page:
+\title{An example thesis}
+\subtitle{A clever joke as subtitle always works well}
+\author{P.J.M. Swinkels}
+\date{}
+
+% Set pdf metadata:
+\hypersetup{%
+    pdfauthor={Piet J.M. Swinkels},
+    pdftitle={An example thesis: A clever joke as subtitle always works well},
+    pdfsubject={Soft Matter Physics},   % Or whatever the subject of your thesis is
+    pdfkeywords={Soft matter; Self-assembly; Colloids; Patchy particles; Critical Casimir effect},
+}
+
+% If you don't want to regenerate the entire thesis every time you make changes, you can turn on and off what is regenerated in this list:
+\includeonly{
+    Sections/Preface/officialtitlepage,
+    Sections/Preface/comitteepage,
+    Sections/Preface/colophon,
+	Sections/Preface/niceinterlude,
+    Sections/Chapter1/chapter1,
+    Sections/Chapter2/chapter2,
+    Sections/Chapter3/chapter3,
+    Sections/Chapter4/chapter4,
+    Sections/Chapter5/chapter5,
+    Sections/Chapter6/chapter6,
+    Sections/Chapter7/chapter7,
+    Sections/Chapter8/chapter8,
+    Sections/Postface/acknowledgements,
+    Sections/Postface/closingstatement,
+    Sections/Postface/listofpublications,
+}
+
+\begin{document}
+    \hypersetup{
+        citecolor  = black,
+        linkcolor  = black,
+        urlcolor   = black,
+    }                                            % Links and refs should just be black outside of the chapters with an accent colour.
+    \maketitle                                   % This is the coverpage, most books have a sort of pre-titlepage immediatly after the outside cover, with just title and author.
+    \cleardoubleevenemptypage                    % titlepage should start on the right-hand side. See Readme for more.
+    \pagestyle{empty}                            % No page numbers on title page!
+    \include{Sections/Preface/officialtitlepage} % Copied from official pdf
+    
+    %%%%%%%%%%%%%%%%%%%%%%%
+    % The frontmatter starts here. Don't use '\frontmatter' directly, because it will cause an empty page in twopage mode. I could also have redifined \frontmatter, but that would be hard.
+    \pagestyle{plain}                            % page numbers for frontmatter (but no header)
+    %%%%%%%%%%%%%%%%%%%%%%%
+
+    \include{Sections/Preface/comitteepage}      % Copied from official pdf + funding info.
+    \include{Sections/Preface/colophon}          % ISBN, etc.
+    \include{Sections/Preface/niceinterlude}     % A quote, or some nice personal words. Not required.
+    \setcounter{tocdepth}{\sectiontocdepth}      % select what to show in toc (only sections, not subsections)
+    \tableofcontents                             % currently, the toc starts at the left page (in twopage mode), so the entire content can be seen without  flipping through the booklet. You can change that if you feel like it by including '\cleardoubleevenemptypage'
+
+    %%%%%%%%%%%%%%%%%%%%%%%
+    % The mainmatter starts here. Again, I don't use \mainmatter directly.
+    % \mainmatter
+    \pagestyle{headings}                         % page numbers and headers for the remainder of the thesis.
+    \KOMAoptions{open=right}                      % Chapters start on the right-hand side in the booklet. 
+    
+    % But, to leave room for images, start left, leave an empty page/include an image, then start the chapter.
+    %%%%%%%%%%%%%%%%%%%%%%%
+
+    \include{Sections/Chapter1/chapter1}         % This is the intro
+    \include{Sections/Chapter2/chapter2}         % this is the methods section
+
+    % The following chapters are typically based on papers, insert as many as you want:
+    \include{Sections/Chapter3/chapter3} 
+    \include{Sections/Chapter4/chapter4} 
+    \include{Sections/Chapter5/chapter5}
+    \include{Sections/Chapter6/chapter6}
+    
+    \include{Sections/Chapter7/chapter7}         % This is the summary (english)
+    \include{Sections/Chapter8/chapter8}         % This is a laymens summary in your own language. Comment out for the reading version of your thesis, where it is not required.
+
+    %%%%%%%%%%%%%%%%%%%%%%%
+    % The backmatter starts here.
+    \backmatter
+    \KOMAoptions{open=left}                      % many of these things fit on two pages, so start on the left pages starting from now on. Can also set to 'any' if you prefer.
+    \hypersetup{
+        hidelinks
+    }                                            % In the list of publications, the links should not be coloured anymore
+    %%%%%%%%%%%%%%%%%%%%%%%
+
+    \include{Sections/Postface/acknowledgements} % not required
+    \include{Sections/Postface/closingstatement} % very much optional
+    \include{Sections/Postface/listofpublications}
+
+    % I split out a bibliography with online materials, but this is just for my particular needs. Replace with a simple '\printbibliography' to get a boring normal bibliography.
+    \printbibliography[prenote=myprenote,nottype=video]
+    \printbibliography[
+        prenote=predigitalmaterialsnote,
+        type=video,
+        title=Online resources
+    ]
+\end{document}

@@ -1,0 +1,60 @@
+% Bibliography options can get messy, so I gave them their own file
+
+% If you have bibliography line-break problems check https://tex.stackexchange.com/a/442317
+
+\usepackage[
+  backend=bibtex,     % If you have biber (you probably do), put 'biber' here.
+  citestyle=numeric-comp, % decide for yourself
+  sorting=none,
+  maxnames=99,        % just put everyones name there, a thesis can be as long as you like anyway
+  maxcitenames=99,    % idem dito.
+  block = space,      % This will grow and shrink space between elements of the citation (e.g. authors and title), may not look as pretty, but will take care of headache.
+  backref=true,
+  backrefstyle=three, % I persanally always like backreferences.
+  doi=true,           % I love DOIs
+  eprint=false,       % typically unneeded if you have doi
+  isbn=false,         % do not print isbn or issn numbers, cause no-one uses those.
+  defernumbers=true,  % The bibliography and digital resources thing have seperate numbering. Not required if you just have one bibliography.
+]{biblatex}
+
+\addbibresource{thesislib.bib} % Import the bibliography file. Generate from Zotero or Mendeley, or write yourself if you hate yourself.
+
+% To only show URLs when no DOI is available, see https://tex.stackexchange.com/a/439818:
+\letbibmacro{urlBAK}{url}
+\renewbibmacro{url}{\iffieldundef{doi}{\usebibmacro{urlBAK}}{}}
+
+\renewcommand*{\bibfont}{\small} %Make bibliographies have a smaller font to save on printing costs
+
+% Make linebreaks possible for DOIs in bib entries, see:
+% https://tex.stackexchange.com/questions/134191/line-breaks-of-long-urls-in-biblatex-bibliography
+\setcounter{biburlnumpenalty}{7000}
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
+
+% Remove the month field from the bibliography. It does not serve a good
+% purpose, I guess. And often, it cannot be used because the journals
+% have some crazy issue policies.
+\AtEveryBibitem{\clearfield{day}}
+\AtEveryCitekey{\clearfield{day}}
+
+\AtEveryBibitem{\clearfield{month}}
+\AtEveryCitekey{\clearfield{month}}
+
+% Also clear the visited time, cause that is useless info.
+\AtEveryBibitem{
+    \clearfield{urlyear}
+    \clearfield{urlmonth}
+}
+
+% Cite movie and video types as if it is misc (this is default behaviour, but it supresses a warning)
+\DeclareBibliographyAlias{movie}{misc}
+\DeclareBibliographyAlias{video}{misc}
+
+% You could put a note before the bibliography begins here. This is put after the heading, but before the citations begin. Maybe you have a funny quote or something.
+\defbibnote{myprenote}{
+    This is an example note, that will appear before the actual bibliograhpy will start.
+}
+
+\defbibnote{predigitalmaterialsnote}{
+    The following are references to content that can be found online.
+}

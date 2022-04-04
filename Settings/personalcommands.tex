@@ -1,0 +1,19 @@
+%To make simple comments in the text
+\newcommand{\com}[1]{\textcolor{red}{#1}}
+%To define the vector command (which will just make math FAT)
+\renewcommand{\vec}[1]{\mathbf{#1}}
+%To make any chemical formulas look like chemical formulas
+\newcommand*\chem[1]{\ensuremath{\mathrm{#1}}}
+% to make Molar a usable unit
+\DeclareSIUnit\Molar{\textsc{M}}
+% To make some chemicals properly hyphenated
+% \hyphenation{
+%     er-go-no-mic,% example
+%     tri-me-thoxy-silyl,
+%     me-tha-cry-late,
+%     lu-ti-dine,
+% }
+
+% I really don't care about hyphenation in the bibliography, and some names are just not hyphenated, super annoying. So force the matter here.
+\hyphenation{S-c-i-o-r-t-i-n-o}
+\hyphenation{S-c-h-w-a-r-t-z}
