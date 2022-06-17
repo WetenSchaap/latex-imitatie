@@ -30,9 +30,18 @@
 
 \usepackage{epigraph}          % for showing quotes at new chapters
 
-\usepackage{tabularx}          % Package for fancy tables
+\usepackage{tabularx}          % package for fancy tables
 
 \usepackage{adjustbox}         % package for making tables fit on 1 page
+
+\usepackage[final]{pdfpages}   % for including page-wide images.
+
+\usepackage[%
+  cross,
+  center,
+  width=180mm,
+  height=250mm
+]{crop}                        % Includes bleed, see the readme. This can be commented out for the reading version of your thesis. The `cross` command just shows you where the paper will be cut, comment it out before sending the pdf to the press. The given values for width and height add 5 mm on all sides and are typically okay.
 
 % These two packages are for cycling trough colours depending on the chapter.
 % (optional)
