@@ -75,6 +75,9 @@ The `main.tex` file is the main LaTeX file. Instead of putting text here directl
 
 This may explain some seemingly odd choices of commands
 
+## Bleed
+To print a booklet, you actually cut the pages out of a bigger piece of paper. This is never 100% exact, so you add 'bleed', just a little bit of extra space to the edges of your page, to prevent white rims around an image or line that reaches the end of the page. The printer will tell you what the minimum  bleed is, typically 2-5 mm on all sides. A package is included to add this bleed, it is not nessecary for the regular reading version. 
+
 ## Coverpages and titlepages
 In printed books, it is normal to include a cover page before the 'real' titlepage, so we do that as well in the thesis! If you open your booklet, on the left side, you have the inside of your cover, on the right side the cover page, just containing a title and your name. On the next page, there is an empty page on the left, and on the right, the thesis *really* starts with the official tile page. To make this work you have to be careful that page numbering starts at the right place, this template currently does that correctly.
 
@@ -88,12 +91,10 @@ Please note that changes in the `\cleardoubleevenemptypage` and `\KOMAoptions{op
 If you (like me) want to add a picture on the left empty page, which might be nice, insert before the beginning of the rest of the chapter the following:
 ```latex
 \cleardoubleevenemptypage
-\thispagestyle{empty}
-\includegraphics[
-  width=\textwidth,%
-  height=\textheight,%
-  keepaspectratio,%
-]{picture}
-\chapter{Chapter Heading}
+\includepdf[width=175mm]{whatever/image/you/want.png}
+\chapter{Just an example chapter}
+\label{ch:example}
+
+% ... the rest of the chapter .... %
 ```
-And tada, a picture will show left, the chapter begins on the right.
+And tada, a picture will show left, the chapter begins on the right. Note the width parameter, it sets the size of the image. Make it wide enough; the bleed must be included r you may get a weird white border around the image.
