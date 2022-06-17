@@ -21,12 +21,12 @@
   {
     paper=170mm:240mm,  % 17x24 cm is Dutch Thesis standard size.
     DIV=calc,           % automatically work out how wide text should be, etc..
-    twoside=false,      % a digital copy is of course not two-sided! So set this to 'false' for the digital reading version for the comittee, and turn it to 'true' for the printing copy you need to send to the press.
-    BCOR = 0mm,         % This is the so-called binding correction, the amount of paper that 'disapears' into the spine of the booklet. It basically offsets your text from the center to account for this. Only needed in PRINTING version of the thesis! The value depends on the printing process.
+    twoside=false,      % a digital copy is of course not two-sided! So set this to 'false' for the digital reading version for the comittee, and turn it to 'true' or 'semi' for the printing copy you need to send to the press. See below for difference between true and semi.
+    BCOR = 0mm,         % This is the so-called binding correction, the amount of paper that 'disapears' into the spine of the booklet. It basically offsets your text from the center to account for this. You can probably ignore this value.
   }
 \recalctypearea % to apply the options
 
-% If twoside = true, This has the (seemingly) weird effect of getting much larger empty margin space on the outer edges then the inner edges of the paper, but this actually makes sense! Since this will be a booklet, the two inner margins together will actually be the same size as the individual outer margins. 
+% If twoside = true, this has the (seemingly) weird effect of getting much larger empty margin space on the outer edges then the inner edges of the paper, but this actually sort of makes sense! Since this will be a booklet, the two inner margins together will actually be the same size as the individual outer margins. If you don't like the way this looks (like me), set this to `semi`, and the margins will look normal.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Draft settings
